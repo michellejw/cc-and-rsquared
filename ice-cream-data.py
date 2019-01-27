@@ -8,22 +8,32 @@ Generate Rita's sample ice cream data
 """
 import numpy as np
 import scipy as sp
+import pandas as pd
 import matplotlib.pyplot as plt
-import matplotlib
 from scipy import stats
+
+# import matplotlib
+# %matplotlib qt
 
 #%%
 fsize = 14
 
+npts = 40
 sp.random.seed(seed=20190114) # Make it the same every time!
-x = np.random.uniform(low=25,high=105,size=30) 
-err = np.random.normal(loc=0.0, scale = 60.0,size=30)
+x = np.random.uniform(low=25,high=105,size=npts) 
+err = np.random.normal(loc=0.0, scale = 60.0,size=npts)
 
 b = -84.875
 m = 3.875
 
 # Generate data that includes an error term
 y = abs((m*x) + b + err)
+## Adjust the highest values a bit to make sales flatten at high temps
+y[33] = 205
+y[10] = 55
+#for ydex in np.arange(len(y)):
+#    if y[ydex] > 250:
+#        y[ydex] = y[ydex]-100
 
 # Fit a line to the data
 slope, intercept, r_value, p_value, std_err = stats.linregress(x,y)
@@ -58,6 +68,10 @@ plt.ylabel('Sales (# cones)',fontsize=fsize)
 plt.show()
 
 #plt.savefig('salesVStemp_residuals.png',transparent=True)
+
+# Save data
+df = pd.DataFrame({'Temperature': x, 'nCones': y})
+#df.to_csv('icecreamdata.csv',index=False,float_format = '%i')
 
 #%%
 '''
