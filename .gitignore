@@ -4,7 +4,7 @@
 *.svg
 
 # Data files
-.csv
+*.csv
 
 # unnecessary files
 .DS_Store
