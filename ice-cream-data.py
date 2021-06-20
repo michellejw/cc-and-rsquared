@@ -193,4 +193,4 @@ y_fit3 = (slope3*x) + intercept3
 ax3.plot(x,y_fit3,'-')
 ax3.plot(x,y_err3,'.')
 
-#plt.savefig('SampleRsquared.png', transparent=True, dpi=300)
+plt.savefig('SampleRsquared.png', transparent=True, dpi=300)

@@ -12,3 +12,6 @@
 
 # Other
 *.html
+ 
+# Pycharm
+.idea
